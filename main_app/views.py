@@ -1,8 +1,7 @@
 from django import forms
 from django.shortcuts import render
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, UpdateView
 from .models import Project
-from .forms import ProjectForm
 
 def home(request):
     return render(request, 'home.html')
@@ -18,12 +17,14 @@ def projects_index(request):
 
 def project_detail(request, project_id):
     project = Project.objects.get(id=project_id)
-    project_form = ProjectForm()
     return render(request, 'projects/detail.html', {
         'project': project,
-        'project_form': project_form
     })
 
 class ProjectCreate(CreateView):
     model = Project
-    form_class = ProjectForm
+    fields = ['name', 'pattern', 'progress_status', 'needle_size', 'cast_on', 'cast_off']
+
+class ProjectUpdate(UpdateView):
+    model = Project
+    fields = ['name', 'pattern', 'progress_status', 'needle_size', 'cast_on', 'cast_off']

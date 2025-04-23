@@ -7,13 +7,21 @@
 
 {% block content %}
 <div>
+    {% if project %}
+    <h1>Edit {{ project.name }}</h1>
+    {% else %}
     <h1>Add A New Project</h1>
+    {% endif %}
 </div>
 <form action="" method="post">
     {% csrf_token %}
     <table>
         {{form.as_table}}
     </table>
+    {% if project %}
+    <button type="submit">Update Project</button>
+    {% else %}
     <button type="submit">Add Project</button>
+    {% endif %}
 </form>
 {% endblock %}
