@@ -1,0 +1,37 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static "css/base.css" %}">
+    <link rel="shortcut icon" type="image/png" href="" />
+    <title>Knit Notes</title>
+    {% block head %}
+    {% endblock  %}
+</head>
+<body>
+    <header>
+        <h2>Knit Notes</h2>
+        <nav>
+            <ul>
+                <li>
+                    <a href="/">Home</a>
+                </li>
+                <li>
+                    <a href="{% url "projects-index" %}">Projects</a>
+                </li>
+                <li>
+                    <a href="{% url "about" %}">About</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container-max-width">
+        {% block content %}
+        {% endblock  %}
+    </main>
+</body>
+</html>

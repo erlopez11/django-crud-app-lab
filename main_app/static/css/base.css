@@ -1,0 +1,81 @@
+@import url('https://fonts.googleapis.com/css2?family=Caprasimo&family=Quicksand:wght@300..700&display=swap');
+
+:root {
+    /* Colors */
+    --clr-light: #FBF5FD;
+    --clr-dark: #130E37;
+    --clr-accentOne: #503DD7;
+    --clr-accentTwo: #FAC06F;
+
+    /* Font Families */
+    --ff-heading: 'Caprasimo', serif;
+    --body: 'Quicksand', sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--body);
+    color: var(--clr-dark);
+    min-height: 100vh;
+}
+
+ul {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: var(--clr-light);
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+header {
+    background-color: var(--clr-accentOne);
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+h2 {
+    font-family: var(--ff-heading);
+    color: var(--clr-light);
+    letter-spacing: 2px;
+}
+
+nav ul {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+nav a:hover {
+    color: var(--clr-accentTwo);
+}
+
+
+/* Utility Classes */
+.container-max-width {
+    --max-width: 1110px;
+    --container-padding: 1.5rem;
+    width: min(var(--max-width), 100% - var(--container-padding) * 2);
+    margin-inline: auto;
+}
+
+@media (max-width: 559px) {
+    header {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+    }
+}
