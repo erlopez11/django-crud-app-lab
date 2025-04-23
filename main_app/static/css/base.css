@@ -2,10 +2,10 @@
 
 :root {
     /* Colors */
-    --clr-light: #FBF5FD;
+    --clr-light: #F4F4Fb;
     --clr-dark: #130E37;
-    --clr-accentOne: #503DD7;
-    --clr-accentTwo: #FAC06F;
+    --clr-accentOne: #5E69EE;
+    --clr-accentTwo: #6f1b99;
 
     /* Font Families */
     --ff-heading: 'Caprasimo', serif;
