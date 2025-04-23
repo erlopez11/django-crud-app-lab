@@ -1,0 +1,12 @@
+{% extends "base.html" %} {% load static %} 
+{% block head %}
+<link rel="stylesheet" href="{% static "css/home.css" %}">
+{% endblock  %}
+{% block content %}
+<h1 class="home-main-heading">Welcome to Knit Notes</h1>
+<p class="home-text">Knit Notes is your personal knitting project tracker, designed to keep your projects organized. All your knitting projects in one place, so you can focus on creating.</p>
+<div class="home-btn-container">
+    <button class="signup-btn">Join Knit Notes</button>
+    <p>Already have an account? <a class="signin-btn" href="">Sign In</a></p>
+</div>
+{% endblock %}
