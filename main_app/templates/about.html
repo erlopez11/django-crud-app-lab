@@ -1,0 +1,30 @@
+{% extends "base.html" %} {% load static %} {% block head %}
+<link rel="stylesheet" href="{% static "css/about.css" %}">
+{% endblock %}
+{% block content %}
+<div class="about-header">
+    <div class="about-img"></div>
+    <div class="about-text">
+        <h1>About Knit Notes</h1>
+        <p>Knit Notes is an app designed by knitters for knitters. Gone are the days of losing track of your knitting rows or forgetting about the new project you were so excited to start. With knit notes you can have all your knitting projects organized in one place.</p>
+        {% comment %} Add url link to sign up page {% endcomment %}
+        <a href="">Get Started</a>
+    </div>
+</div>
+
+<section class="about-features">
+    <h2>Knit Notes Features</h2>
+    <ul>
+        <li>
+            <p>All your knitting project information in one place an d on hand</p>
+        </li>
+        <li>
+            <p>Add notes after each knitting session to keep track of your rows and progress</p>
+        </li>
+        <li>
+            <p>Manage your yarn stash and keep track of all the yarn skeins in your collection</p>
+        </li>
+    </ul>
+</section>
+
+{% endblock %}
