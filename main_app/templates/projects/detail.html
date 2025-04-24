@@ -11,6 +11,7 @@
         <h2>{{project.status}}</h2>
         <div>
             <a href="{% url "project-update" project.id %}">Edit Project</a>
+            <a href="{% url "project-delete" project.id %}">Delete Project</a>
         </div>
     </div>
     <div>

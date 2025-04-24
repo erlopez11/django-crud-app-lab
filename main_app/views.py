@@ -1,6 +1,6 @@
 from django import forms
 from django.shortcuts import render
-from django.views.generic.edit import CreateView, UpdateView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import Project
 
 def home(request):
@@ -28,3 +28,7 @@ class ProjectCreate(CreateView):
 class ProjectUpdate(UpdateView):
     model = Project
     fields = ['name', 'pattern', 'progress_status', 'needle_size', 'cast_on', 'cast_off']
+
+class ProjectDelete(DeleteView):
+    model = Project
+    success_url = '/projects/'
