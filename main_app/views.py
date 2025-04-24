@@ -2,6 +2,7 @@ from django import forms
 from django.shortcuts import render
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import Project
+from .forms import ProjectForm
 
 def home(request):
     return render(request, 'home.html')
@@ -22,12 +23,14 @@ def project_detail(request, project_id):
     })
 
 class ProjectCreate(CreateView):
+    form_class = ProjectForm
     model = Project
-    fields = ['name', 'pattern', 'progress_status', 'needle_size', 'cast_on', 'cast_off']
+    #fields = ['name', 'pattern', 'progress_status', 'needle_size', 'cast_on', 'cast_off']
 
 class ProjectUpdate(UpdateView):
+    form_class = ProjectForm
     model = Project
-    fields = ['name', 'pattern', 'progress_status', 'needle_size', 'cast_on', 'cast_off']
+    #fields = ['name', 'pattern', 'progress_status', 'needle_size', 'cast_on', 'cast_off']
 
 class ProjectDelete(DeleteView):
     model = Project
