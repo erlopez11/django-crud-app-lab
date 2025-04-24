@@ -1,5 +1,5 @@
 from django import forms
-from .models import Project
+from .models import Project, Note
 
 class ProjectForm(forms.ModelForm):
     class Meta:
@@ -14,6 +14,20 @@ class ProjectForm(forms.ModelForm):
                 }
             ),
             'cast_off': forms.DateInput(
+                format=('%y-%m-%d'),
+                attrs={
+                    'placeholder': 'Select a date',
+                    'type': 'date'
+                }
+            ),
+        }
+
+class NoteForm(forms.ModelForm):
+    class Meta:
+        model = Note
+        fields = ['date', 'notes', 'current_row']
+        widgets = {
+            'date': forms.DateInput(
                 format=('%y-%m-%d'),
                 attrs={
                     'placeholder': 'Select a date',

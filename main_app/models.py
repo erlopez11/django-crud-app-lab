@@ -49,4 +49,15 @@ class Project(models.Model):
         return self.name
     def get_absolute_url(self):
         return reverse('project-detail', kwargs={'project_id': self.id})
+
+
+class Note(models.Model):
+    date = models.DateField('Knitting Session Date')
+    notes = models.TextField()
+    current_row = models.PositiveIntegerField()
+    project = models.ForeignKey(Project, on_delete=models.CASCADE)
     
+    def __str__(self):
+        return f'On {self.current_row} row on {self.date}'
+    class Meta:
+        ordering = ['-date']
