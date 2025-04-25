@@ -33,11 +33,21 @@ NEEDLE_SIZE = (
     ('17', '12mm US 17'),
     ('19', '16mm US 19'),
     ('35', '19mm US 35'),
-    ('50', '25mm US 50'),
+    ('50', '25mm US 50')
+)
+
+YARN_WEIGHT = (
+    ('0', '0 Lace'),
+    ('1', '1 Super Fine'),
+    ('2', '2 Fine'),
+    ('3', '3 Light'),
+    ('4', '4 Medium'),
+    ('5', '5 Bulky'),
+    ('6', '6 Super Bulky'),
+    ('7', '7 Jumbo')
 )
 
 class Project(models.Model):
-
     name = models.CharField(max_length=100)
     pattern = models.CharField(max_length=100)
     progress_status = models.CharField(choices=PROGRESS_STATUS, default=PROGRESS_STATUS[0][0])
@@ -61,3 +71,17 @@ class Note(models.Model):
         return f'On {self.current_row} row on {self.date}'
     class Meta:
         ordering = ['-date']
+
+
+class Yarn(models.Model):
+    yarn_name = models.CharField(max_length=100)
+    yarn_weight = models.CharField(choices=YARN_WEIGHT, default=YARN_WEIGHT[4][0])
+    fiber_type = models.CharField()
+    color = models.CharField(max_length=100)
+    yarn_quantity = models.PositiveIntegerField()
+
+    def __str__(self):
+        return self.yarn_name
+    def get_absolute_url(self):
+        return reverse('yarn-detail', kwargs={"pk": self.id})
+    
