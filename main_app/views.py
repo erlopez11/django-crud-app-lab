@@ -56,3 +56,11 @@ class YarnList(ListView):
 
 class YarnDetail(DetailView):
     model = Yarn
+
+class YarnUpdate(UpdateView):
+    model = Yarn
+    fields = ['yarn_name', 'yarn_weight', 'fiber_type', 'color', 'yarn_quantity']
+
+class YarnDelete(DeleteView):
+    model = Yarn
+    success_url = '/yarn/'
