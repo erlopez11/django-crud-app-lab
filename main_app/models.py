@@ -1,5 +1,6 @@
 from django.db import models
 from django.urls import reverse
+from django.contrib.auth.models import User
 
 PROGRESS_STATUS = (
     ('P', 'Planned'),
@@ -53,6 +54,7 @@ class Yarn(models.Model):
     fiber_type = models.CharField()
     color = models.CharField(max_length=100)
     yarn_quantity = models.PositiveIntegerField()
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.yarn_name
@@ -68,6 +70,7 @@ class Project(models.Model):
     cast_on = models.DateField(null=True, blank=True)
     cast_off = models.DateField(null=True, blank=True)
     yarn = models.ManyToManyField(Yarn)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.name
