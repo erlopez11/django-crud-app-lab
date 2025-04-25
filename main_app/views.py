@@ -1,7 +1,8 @@
 from django import forms
 from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from .models import Project
+from django.views.generic import ListView, DetailView
+from .models import Project, Yarn
 from .forms import ProjectForm, NoteForm
 
 def home(request):
@@ -45,3 +46,13 @@ class ProjectUpdate(UpdateView):
 class ProjectDelete(DeleteView):
     model = Project
     success_url = '/projects/'
+
+class YarnCreate(CreateView):
+    model = Yarn
+    fields = ['yarn_name', 'yarn_weight', 'fiber_type', 'color', 'yarn_quantity']
+
+class YarnList(ListView):
+    model = Yarn
+
+class YarnDetail(DetailView):
+    model = Yarn
