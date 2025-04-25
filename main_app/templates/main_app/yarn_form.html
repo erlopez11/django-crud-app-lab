@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static "css/form.css" %}">
+{% endblock %}
+
+{% block content %}
+<div>
+    {% if yarn %}
+        <h1>Edit {{yarn.name}}</h1>
+    {% else %}
+        <h1>Add Yarn</h1>
+    {% endif %}
+</div>
+<form action="" method="post" autocomplete="off">
+    {% csrf_token %}
+    <table>
+        {{form.as_table}}
+    </table>
+    <button type="submit">Submit</button>
+</form>
+{% endblock %}

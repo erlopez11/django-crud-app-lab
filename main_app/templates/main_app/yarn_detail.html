@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static "css/yarn/yarn-detail.css" %}">
+{% endblock %}
+
+{% block content %}
+<div>
+    <h1>{{yarn.yarn_name}}</h1>
+    <div>
+        <a href="">Edit</a>
+        <a href="">Delete</a>
+    </div>
+</div>
+<div>
+    <p><span>Yarn Weight:</span>{{yarn.get_yarn_weight_display}}</p>
+    <p><span>Fiber Type:</span>{{yarn.fiber_type}}</p>
+    <p><span>Color:</span>{{yarn.color}}</p>
+    <p><span>Yarn Quantity:</span>{{yarn.yarn_quantity}}</p>
+</div>
+{% endblock %}

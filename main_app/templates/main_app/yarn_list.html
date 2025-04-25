@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static "css/yarn/yarn-index.css" %}">
+{% endblock %}
+
+{% block content %}
+<section>
+    <h1>Yarn Stash</h1>
+</section>
+<section>
+    {% for yarn in yarn_list  %}
+        <div>
+            <div>
+                <a href="{% url "yarn-detail" yarn.id %}">
+                    <h2>{{yarn.yarn_name}}</h2>
+                    <p><span>Yarn Quantity:</span>{{yarn.yarn_quantity}}</p>
+                </a>
+            </div>
+        </div>
+    {% endfor %}
+</section>
+{% endblock %}
