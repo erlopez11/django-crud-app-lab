@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div>
+    <h1>Delete Yarn?</h1>
+</div>
+<h2>Are you sure you want to delete {{yarn.yarn_name}} from your yarn stash?</h2>
+
+<form action="" method="post">
+    {% csrf_token %}
+    <a href="{% url "yarn-detail" yarn.id %}">Cancel</a>
+    <button type="submit">Delete Yarn</button>
+</form>
+{% endblock %}

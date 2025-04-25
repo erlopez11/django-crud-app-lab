@@ -9,8 +9,8 @@
 <div>
     <h1>{{yarn.yarn_name}}</h1>
     <div>
-        <a href="">Edit</a>
-        <a href="">Delete</a>
+        <a href="{% url "yarn-update" yarn.id %}">Edit</a>
+        <a href="{% url "yarn-delete" yarn.id %}">Delete</a>
     </div>
 </div>
 <div>
