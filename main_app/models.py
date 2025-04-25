@@ -47,6 +47,19 @@ YARN_WEIGHT = (
     ('7', '7 Jumbo')
 )
 
+class Yarn(models.Model):
+    yarn_name = models.CharField(max_length=100)
+    yarn_weight = models.CharField(choices=YARN_WEIGHT, default=YARN_WEIGHT[4][0])
+    fiber_type = models.CharField()
+    color = models.CharField(max_length=100)
+    yarn_quantity = models.PositiveIntegerField()
+
+    def __str__(self):
+        return self.yarn_name
+    def get_absolute_url(self):
+        return reverse('yarn-detail', kwargs={"pk": self.id})
+    
+    
 class Project(models.Model):
     name = models.CharField(max_length=100)
     pattern = models.CharField(max_length=100)
@@ -54,6 +67,7 @@ class Project(models.Model):
     needle_size = models.CharField(choices=NEEDLE_SIZE, default=NEEDLE_SIZE[13][0])
     cast_on = models.DateField(null=True, blank=True)
     cast_off = models.DateField(null=True, blank=True)
+    yarn = models.ManyToManyField(Yarn)
 
     def __str__(self):
         return self.name
@@ -73,15 +87,4 @@ class Note(models.Model):
         ordering = ['-date']
 
 
-class Yarn(models.Model):
-    yarn_name = models.CharField(max_length=100)
-    yarn_weight = models.CharField(choices=YARN_WEIGHT, default=YARN_WEIGHT[4][0])
-    fiber_type = models.CharField()
-    color = models.CharField(max_length=100)
-    yarn_quantity = models.PositiveIntegerField()
-
-    def __str__(self):
-        return self.yarn_name
-    def get_absolute_url(self):
-        return reverse('yarn-detail', kwargs={"pk": self.id})
     
