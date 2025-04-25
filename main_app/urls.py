@@ -15,4 +15,6 @@ urlpatterns = [
     path('yarn/', views.YarnList.as_view(), name='yarn-index'),
     path('yarn/<int:pk>/update/', views.YarnUpdate.as_view(), name='yarn-update'),
     path('yarn/<int:pk>/delete/', views.YarnDelete.as_view(), name='yarn-delete'),
+    path('projects/<int:project_id>/associate-yarn/<int:yarn_id>/', views.associate_yarn, name='associate-yarn'),
+    path('projects/<int:project_id>/remove-yarn/<int:yarn_id>/', views.remove_yarn, name='remove-yarn'),
 ]

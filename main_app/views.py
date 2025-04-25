@@ -19,10 +19,12 @@ def projects_index(request):
 
 def project_detail(request, project_id):
     project = Project.objects.get(id=project_id)
+    yarn_available = Yarn.objects.exclude(id__in = project.yarn.all().values_list('id'))
     note_form = NoteForm()
     return render(request, 'projects/detail.html', {
         'project': project,
-        'note_form': note_form
+        'note_form': note_form,
+        'yarn': yarn_available
     })
 
 def add_note(request, project_id):
@@ -32,6 +34,14 @@ def add_note(request, project_id):
         new_note.project_id = project_id
         new_note.save()
     return redirect('project-detail', project_id)
+
+def associate_yarn(request, project_id, yarn_id):
+    Project.objects.get(id=project_id).yarn.add(yarn_id)
+    return redirect('project-detail', project_id=project_id)
+
+def remove_yarn(request, project_id, yarn_id):
+    Project.objects.get(id=project_id).yarn.remove(yarn_id)
+    return redirect('project-detail', project_id= project_id)
 
 class ProjectCreate(CreateView):
     form_class = ProjectForm
