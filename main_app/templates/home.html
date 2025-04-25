@@ -3,10 +3,24 @@
 <link rel="stylesheet" href="{% static "css/home.css" %}">
 {% endblock  %}
 {% block content %}
-<h1 class="home-main-heading">Welcome to Knit Notes</h1>
-<p class="home-text">Knit Notes is your personal knitting project tracker, designed to keep your projects organized. All your knitting projects in one place, so you can focus on creating.</p>
-<div class="home-btn-container">
-    <button class="signup-btn">Join Knit Notes</button>
-    <p>Already have an account? <a class="signin-btn" href="">Sign In</a></p>
+<div class='home-info'>
+    <h1 class="home-main-heading">Welcome to Knit Notes</h1>
+    <p class="home-text">Knit Notes is your personal knitting project tracker, designed to keep your projects organized. All your knitting projects in one place, so you can focus on creating.</p>
+    {% if not user.is_authenticated %}
+        <div class="home-btn-container">
+            <button class="signup-btn">Join Knit Notes</button>
+        </div>
+    {% endif %}
 </div>
+{% if not user.is_authenticated %}
+    <section class='home-login'>
+        <h2>Login</h2>
+     <form action="{% url "home" %}" method="post" class="login">
+            {% csrf_token %}
+         {{form.as_p}}
+            <input type="hidden" name="next" value={{ next }}>
+         <button type="submit" class="btn">Login</button>
+        </form>
+    </section>
+{% endif %}
 {% endblock %}
