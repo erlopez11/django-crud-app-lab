@@ -6,15 +6,15 @@
 {% endblock %}
 
 {% block content %}
-<section>
+<section class="page-header">
     <h1>Yarn Stash</h1>
 </section>
-<section>
+<section class="card-container">
     {% for yarn in yarn_list  %}
-        <div>
-            <div>
+        <div class="card">
+            <div class="card-content">
                 <a href="{% url "yarn-detail" yarn.id %}">
-                    <h2>{{yarn.yarn_name}}</h2>
+                    <h2 class="card-title">{{yarn.yarn_name}}</h2>
                     <p><span>Yarn Quantity:</span>{{yarn.yarn_quantity}}</p>
                 </a>
             </div>

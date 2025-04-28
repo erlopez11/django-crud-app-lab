@@ -6,14 +6,14 @@
 {% endblock %}
 
 {% block content %}
-<div>
+<div class="detail-header">
     <h1>{{yarn.yarn_name}}</h1>
-    <div>
-        <a href="{% url "yarn-update" yarn.id %}">Edit</a>
-        <a href="{% url "yarn-delete" yarn.id %}">Delete</a>
+    <div class="detail-btns-container">
+        <a class="detail-btns detail-edit" href="{% url "yarn-update" yarn.id %}">Edit</a>
+        <a class="detail-btns detail-delete" href="{% url "yarn-delete" yarn.id %}">Delete</a>
     </div>
 </div>
-<div>
+<div class="yarn-info">
     <p><span>Yarn Weight:</span>{{yarn.get_yarn_weight_display}}</p>
     <p><span>Fiber Type:</span>{{yarn.fiber_type}}</p>
     <p><span>Color:</span>{{yarn.color}}</p>

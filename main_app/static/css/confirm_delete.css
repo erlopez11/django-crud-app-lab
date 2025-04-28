@@ -1,0 +1,39 @@
+.delete-header h1 {
+    font-family: var(--ff-heading);
+    color: var(--clr-accentOne);
+    margin-top: 40px;
+}
+
+.delete-prompt {
+    color: var(--clr-dark);
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.cancel-btn {
+    border: 1px solid var(--clr-accentTwo);
+    color: var(--clr-accentOne);
+    border-radius: 10px;
+    padding: 8px 20px;
+    transition: 0.5s;
+    font-size: 13px;
+    margin-right: 20px;
+}
+
+.cancel-btn:hover {
+    background-color: var(--clr-accentTwo);
+    color: var(--clr-light);
+}
+
+.delete-btn {
+    background-color: var(--clr-accentOne);
+    color: var(--clr-light);
+    border: none;
+    border-radius: 10px;
+    padding: 8px 20px;
+    transition: 0.5s;
+}
+
+.delete-btn:hover {
+    background-color: var(--clr-accentTwo);
+}

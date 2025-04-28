@@ -1,15 +1,19 @@
 {% extends 'base.html' %}
 {% load static %}
 
+{% block head %}
+<link rel="stylesheet" href="{% static "css/confirm_delete.css" %}">
+{% endblock %}
+
 {% block content %}
-<div>
+<div class="delete-header">
     <h1>Delete Yarn?</h1>
 </div>
-<h2>Are you sure you want to delete {{yarn.yarn_name}} from your yarn stash?</h2>
+<h2 class="delete-prompt">Are you sure you want to delete {{yarn.yarn_name}} from your yarn stash?</h2>
 
 <form action="" method="post">
     {% csrf_token %}
-    <a href="{% url "yarn-detail" yarn.id %}">Cancel</a>
-    <button type="submit">Delete Yarn</button>
+    <a class="cancel-btn" href="{% url "yarn-detail" yarn.id %}">Cancel</a>
+    <button class="delete-btn" type="submit">Delete Yarn</button>
 </form>
 {% endblock %}

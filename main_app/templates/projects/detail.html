@@ -1,80 +1,91 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block head %}
-<link rel="stylesheet" href="{% static "css'projects/project-detail.css" %}">
+<link rel="stylesheet" href="{% static "css/projects/project-detail.css" %}">
 {% endblock %}
 
 {% block content %}
 <section>
-    <div>
+    <div class="detail-header">
         <h1>{{project.name}}</h1>
         <h2>{{project.status}}</h2>
-        <div>
-            <a href="{% url "project-update" project.id %}">Edit Project</a>
-            <a href="{% url "project-delete" project.id %}">Delete Project</a>
+        <div class="detail-btns-container">
+            <a class="detail-btns detail-edit" href="{% url "project-update" project.id %}">Edit Project</a>
+            <a class="detail-btns detail-delete" href="{% url "project-delete" project.id %}">Delete Project</a>
         </div>
     </div>
-    <div>
-        <img src="" alt="">
-        <div>
-            <p><span>Pattern:</span>{{project.pattern}}</p>
-            <p><span>Cast On Date:</span>{{project.cast_on}}</p>
-            <p><span>Cast Off Date:</span>{{project.cast_off}}</p>
-            <p><span>Needle Size:</span>{{project.get_needle_size_display}}</p>
-        </div>
+    <div class="project-info">
+        <p><span>Pattern:</span>{{project.pattern}}</p>
+        <p><span>Cast On Date:</span>{{project.cast_on}}</p>
+        <p><span>Cast Off Date:</span>{{project.cast_off}}</p>
+        <p><span>Needle Size:</span>{{project.get_needle_size_display}}</p>
     </div>
 </section>
 
-<div>
-    <section>
-        <div>
+<div class="additional-details">
+    <section class="project-notes">
+        <div class="notes-header">
             <h2>Project Notes</h2>
+            <hr class="divider">
         </div>
-        <div>
+        <div class="notes-form">
             <h3>Add a Project Note</h3>
-            <form action="{% url "add-note" project.id %}" method="post">
+            <form action="{% url "add-note" project.id %}" method="post" class="form-container">
                 {% csrf_token %}
                 {{note_form}}
                 <button type="submit">Add Project Note</button>
             </form>
         </div>
-        <h3>Past Project Notes</h3>
-        {% if project.note_set.all.count %}
-        <table>
-            <thead>
-                <tr>
-                    <th>Date</th>
-                    <th>Notes</th>
-                    <th>Current Row</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for note in project.note_set.all %}
-                <tr>
-                    <td>{{note.date}}</td>
-                    <td>{{note.notes}}</td>
-                    <td>{{note.current_row}}</td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-        {% else %}
-        <div>
-            <p>No notes available yet.</p>
+        <div class="past-notes">
+            <h3>Past Project Notes</h3>
+            {% if project.note_set.all.count %}
+            <table class="notes-table">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Notes</th>
+                        <th>Current Row</th>
+                    </tr>
+                </thead>
+                <tbody class="table-body">
+                    {% for note in project.note_set.all %}
+                    <tr>
+                        <td>{{note.date}}</td>
+                        <td>{{note.notes}}</td>
+                        <td>{{note.current_row}}</td>
+                        <td>
+                            <form action="{% url "remove-note" note.id %}" method="post">
+                                {% csrf_token %}
+                                <button type="submit">Remove Note</button>
+                            </form>
+                            <form action="" {% url "update-note" note.id %} method="post">
+                                {% csrf_token %}
+                                <button type="submit">Edit Note</button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            {% else %}
+            <div>
+                <p>No notes available yet.</p>
+            </div>
+            {% endif %}
         </div>
-        {% endif %}
     </section>
-    <section>
+    <section class="yarn">
         <div>
             <h2>Yarn</h2>
+            <hr class="divider">
         </div>
         <h3>{{project.name}} Yarn</h3>
         <div>
             {% if project.yarn.count %}
                 {% for yarn in project.yarn.all  %}
-                    <div>
+                    <div class="yarn-info">
                         <a href="{% url "yarn-detail" yarn.id %}">
-                            <p>{{yarn.yarn_name}}</p>
+                            <p class="yarn-name">{{yarn.yarn_name}}</p>
                             <form action="{% url "remove-yarn" project.id yarn.id %}" method="post">
                                 {% csrf_token %}
                                 <button type="submit">Remove Yarn from Project</button>
@@ -90,7 +101,7 @@
         <div>
             {% if yarn.count %}
                 {% for yarn in yarn.all  %}
-                    <div>
+                    <div class="yarn-info">
                         <p>{{yarn.yarn_name}}</p>
                      <form action="{% url "associate-yarn" project.id yarn.id %}" method="post">
                          {% csrf_token %}

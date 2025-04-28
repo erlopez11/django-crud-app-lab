@@ -2,26 +2,26 @@
 {% load static %}
 
 {% block head %}
-<link rel="stylesheet" href="">
+<link rel="stylesheet" href="{% static "css/form.css" %}">
 {% endblock %}
 
 {% block content %}
-<div>
+<div class="form-header">
     {% if project %}
     <h1>Edit {{ project.name }}</h1>
     {% else %}
     <h1>Add A New Project</h1>
     {% endif %}
 </div>
-<form action="" method="post">
+<form action="" method="post" class="form-container">
     {% csrf_token %}
     <table>
         {{form.as_table}}
     </table>
     {% if project %}
-    <button type="submit">Update Project</button>
+    <button class="btn" type="submit">Update Project</button>
     {% else %}
-    <button type="submit">Add Project</button>
+    <button class="btn" type="submit">Add Project</button>
     {% endif %}
 </form>
 {% endblock %}

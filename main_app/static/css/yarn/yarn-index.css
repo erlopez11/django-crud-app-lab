@@ -1,0 +1,42 @@
+.card-container {
+    padding: 0 30px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.page-header h1 {
+    font-family: var(--ff-heading);
+    color: var(--clr-accentOne);
+    margin-top: 40px;
+    margin-bottom: 50px;
+}
+
+.card {
+    width: 275px;
+    margin: 10px;
+    border: 2px solid var(--clr-accentTwo);
+    border-radius: 6px;
+    transition: 0.5s;
+}
+
+.card:hover {
+    box-shadow: 5px 5px 6px -1px #c1a5cf;
+}
+
+.card-content {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    width: 100%;
+}
+
+.card h2 {
+    color: var(--clr-accentOne);
+    margin: 10px 0;
+}
+
+.card p {
+    color: var(--clr-accentTwo);
+    margin: 5px 0;
+}
