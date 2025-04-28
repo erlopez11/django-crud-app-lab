@@ -1,5 +1,5 @@
 from django import forms
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView, DetailView
 from django.contrib.auth import login
@@ -7,7 +7,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView
-from .models import Project, Yarn
+from .models import Project, Yarn, Note
 from .forms import ProjectForm, NoteForm
 
 class Home(LoginView):
@@ -58,6 +58,13 @@ def add_note(request, project_id):
     return redirect('project-detail', project_id)
 
 @login_required
+def remove_note(request, project_id, note_id):
+    note = get_object_or_404(Note, id=note_id)
+    if request.method == 'POST':
+        note.delete()
+        return redirect('project-detail', project_id=project_id)
+
+@login_required
 def associate_yarn(request, project_id, yarn_id):
     Project.objects.get(id=project_id).yarn.add(yarn_id)
     return redirect('project-detail', project_id=project_id)
@@ -65,7 +72,7 @@ def associate_yarn(request, project_id, yarn_id):
 @login_required
 def remove_yarn(request, project_id, yarn_id):
     Project.objects.get(id=project_id).yarn.remove(yarn_id)
-    return redirect('project-detail', project_id= project_id)
+    return redirect('project-detail', project_id)
 
 class ProjectCreate(LoginRequiredMixin, CreateView):
     form_class = ProjectForm
@@ -74,8 +81,6 @@ class ProjectCreate(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         form.instance.user = self.request.user
         return super().form_valid(form)
-    
-
 
 class ProjectUpdate(LoginRequiredMixin, UpdateView):
     form_class = ProjectForm

@@ -54,13 +54,9 @@
                         <td>{{note.notes}}</td>
                         <td>{{note.current_row}}</td>
                         <td>
-                            <form action="{% url "remove-note" note.id %}" method="post">
+                            <form action="{% url "remove-note" project.id note.id %}" method="post">
                                 {% csrf_token %}
                                 <button type="submit">Remove Note</button>
-                            </form>
-                            <form action="" {% url "update-note" note.id %} method="post">
-                                {% csrf_token %}
-                                <button type="submit">Edit Note</button>
                             </form>
                         </td>
                     </tr>

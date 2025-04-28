@@ -10,6 +10,7 @@ urlpatterns = [
     path('projects/<int:pk>/update/', views.ProjectUpdate.as_view(), name='project-update'),
     path('projects/<int:pk>/delete/', views.ProjectDelete.as_view(), name='project-delete'),
     path('projects/<int:project_id>/add-note/', views.add_note, name='add-note'),
+    path('projects/<int:project_id>/remove-note/<int:note_id>', views.remove_note, name='remove-note'),
     path('yarn/create', views.YarnCreate.as_view(), name='yarn-create'),
     path('yarn/<int:pk>/', views.YarnDetail.as_view(), name='yarn-detail'),
     path('yarn/', views.YarnList.as_view(), name='yarn-index'),
